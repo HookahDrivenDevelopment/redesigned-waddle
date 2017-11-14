@@ -63,6 +63,7 @@ void zadacha4()
   }
   for (int i = N; i <= M; i++)
   {
+    //REFACTOR : добавить скобки
     for (int k = 0; k < i; k++)
       cout << i << ' ';
     cout << endl;
