@@ -14,8 +14,12 @@ void zadacha1()
     y = 3;
   }
   else
+  {
     if ( abs(a) <= 3 )
+    {
       y = -abs(a) + 3;
+    }
+  }
   cout << "y="<< y << endl;
 }
 
@@ -25,9 +29,13 @@ void zadacha2()
   cin >> x >> y;
   // REFACTOR: скобки
   if( ((x - 3) * (x - 3) + y * y <= 9) || ((x - 3) * (x - 3) + (y - 3) * (y - 3) <= 9) )
+  {
     cout << "YES!" << endl;
+  }
   else
+  {
     cout << "NO!" << endl;
+  }
 }
 
 void zadacha3()
@@ -38,15 +46,19 @@ void zadacha3()
   cin >> x;
   if (x == 0)
   {
-    cout<< "End of seq"<<endl;
+    cout << "End of seq" << endl;
     return;
   }
   while(x != 0)
   {
     if(x > max)
+    {
       max = x;
+    }
     if(x < min)
+    {
       min = x;
+    }
     cin >> x;
   }
   cout<< (double) min / max<< endl;
@@ -65,7 +77,9 @@ void zadacha4()
   {
     //REFACTOR : добавить скобки
     for (int k = 0; k < i; k++)
+    {
       cout << i << ' ';
+    }
     cout << endl;
   }
 }
