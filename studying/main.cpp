@@ -6,7 +6,8 @@ using namespace std;
 
 void zadacha1()
 {
-  double a, y;
+  double a = 0;
+  double y = 0.0;
 
   cin>>a;
 
@@ -21,12 +22,14 @@ void zadacha1()
       y = -abs(a) + 3;
     }
   }
-  cout << "y="<< y << endl;
+
+  cout << "y=" << y << endl;
 }
 
 void zadacha2()
 {
-  double x, y;
+  double x = 0;
+  double y = 0;
 
   cin >> x >> y;
 
@@ -42,9 +45,9 @@ void zadacha2()
 
 void zadacha3()
 {
-  int x, max, min;
-  min = 1000000;
-  max = -1000000;
+  int x = 0;
+  int min = 1000000;
+  int max = -1000000;
 
   cin >> x;
 
@@ -65,12 +68,17 @@ void zadacha3()
     }
     cin >> x;
   }
-  cout<< (double) min / max<< endl;
+
+  double returnValue = static_cast<double>(min) / static_cast<double>(max);
+
+  cout << returnValue << endl;
 }
 
 void zadacha4()
 {
-  int N, M;
+  int N = 0;
+  int M = 0;
+
   cin >> N >> M;
 
   if (N >= M)
@@ -117,7 +125,10 @@ int Arms(int N, int size) //считает степенную сумму
 
 void zadacha5()
 {
-  int N, newd, size, q;
+  int N = 0;
+  int newd = 0;
+  int size = 0;
+  int q = 0;
 
   cin >> q;
 
@@ -143,5 +154,6 @@ int main()
   zadacha3();
   zadacha4();
   zadacha5();
+
   return 0;
 }
