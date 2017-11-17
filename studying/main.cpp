@@ -87,9 +87,9 @@ void zadacha4()
     return;
   }
 
-  for (int i = N; i <= M; i++)
+  for (int i = N; i <= M; ++i)
   {
-    for (int k = 0; k < i; k++)
+    for (int k = 0; k < i; ++k)
     {
       cout << i << ' ';
     }
@@ -104,7 +104,7 @@ int digits(int N) // считает кол-во цифр в числе
   while ( N != 0)
   {
     N = N / 10;
-    i++;
+    ++i;
   }
 
   return i;
@@ -114,7 +114,7 @@ int Arms(int N, int size) //считает степенную сумму
 {
   int sum = 0;
 
-  for(int i = 0; i < size; i++)
+  for(int i = 0; i < size; ++i)
   {
     sum = sum + pow( N % 10 , size);
     N = N / 10;
@@ -132,11 +132,13 @@ void zadacha5()
 
   cin >> q;
 
-  for (int i=0; i < q; i++)
+  for (int i=0; i < q; ++i)
   {
     cin >> N;
+
     size = digits(N);
     newd = Arms(N, size);
+
     if (N == newd)
     {
       cout << "YES" <<endl;
