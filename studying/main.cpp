@@ -151,7 +151,7 @@ void zadacha5()
   cout << "NO" << endl;
 }
 
-void notpl (int A[], int X[], int n, int &counter)
+void notpl (int*& A, int X[], int n, int &counter)
 {
   int *number;
   for ( int i = 0; i < n; i++)
@@ -172,7 +172,9 @@ void zadacha6()
   int mult = 1;
   long int max = -100;
 
-  cin >> n;
+  //cin >> n;
+  n = 5;
+  cout << "n = " << n << "\n";
 
   int *B;
   B = new int[n];
@@ -200,7 +202,9 @@ void zadacha6()
   int *C, *A = NULL;
   int m = 0;
 
-  cin >> m;
+  //cin >> m;
+  m = 5;
+  cout << "m = " << m << "\n";
 
   C = new int[m];
 
@@ -214,6 +218,8 @@ void zadacha6()
 
   notpl(A, B, n, counter);
   notpl(A, C, m, counter);
+
+  cout << "\nresult: \n";
 
   for ( int i = 0; i < counter; ++i)
   {
