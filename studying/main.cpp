@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
 #include <array>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
@@ -149,13 +151,86 @@ void zadacha5()
   cout << "NO" << endl;
 }
 
+void notpl (int A[], int X[], int n, int &counter)
+{
+  int *number;
+  for ( int i = 0; i < n; i++)
+  {
+    if ( X[i] >= 0 )
+    {
+      counter ++;
+      number = (int*) realloc (A, counter * sizeof(int));  //не выделяет память :(
+      A = number;
+      A[counter - 1] = X[i];
+    }
+  }
+}
+
+void zadacha6()
+{
+  int n = 0;
+  int mult = 1;
+  long int max = -100;
+
+  cin >> n;
+
+  int *B;
+  B = new int[n];
+  srand( time(0) );
+
+  for ( int i = 0; i < n; ++i)
+  {
+    B[i] = rand() % 101 + (-50);
+    cout << B[i] << ' ';
+  }
+
+  for ( int i = 0; i < n; i++)
+  {
+    if ( (B[i] < 0) && ( (i % 2) == 0) )
+    {
+      mult *= B[i];
+    }
+
+    if ( ( (B[i] % 3) == 0 ) && B[i] > max)
+      max = B[i];
+  }
+
+  cout << endl << mult << ' ' << max << endl;
+
+  int *C, *A = NULL;
+  int m = 0;
+
+  cin >> m;
+
+  C = new int[m];
+
+  for ( int i = 0; i < m; ++i)
+  {
+    C[i] = rand() % 201 + (-100);
+    cout << C[i] << ' ';
+  }
+
+  int counter=0;
+
+  notpl(A, B, n, counter);
+  notpl(A, C, m, counter);
+
+  for ( int i = 0; i < counter; ++i)
+  {
+    cout << A[i] << ' ';
+  }
+
+
+}
+
 int main()
 {
-  zadacha1();
+  /*zadacha1();
   zadacha2();
   zadacha3();
   zadacha4();
-  zadacha5();
+  zadacha5();*/
+  zadacha6();
 
   return 0;
 }
