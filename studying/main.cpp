@@ -316,15 +316,15 @@ void search(int &max0, int &max1, int &max2, int Z[], int count)
 {
   int i, l;
   bool x=false;
-  for(max0 = 0, i = 1; i < count; i++)
-    if ( simple(Z[i]))
+  max0=-1;
+  for(i = 0; i < count; i++)
+  {
+    if ( simple(Z[i]) &&  Z[i] > max0)
     {
       x=true;
-      if ( Z[i] > Z[max0])
-      {
-        max0 = i;
-      }
+      max0 = Z[i];
     }
+  }
   if ( !x )
   {
     max0=NULL;
@@ -333,16 +333,16 @@ void search(int &max0, int &max1, int &max2, int Z[], int count)
   x=false;
   for (l = i = 0; i < count; i++)
   {
-    if (simple(Z[i]) && i!=max0)
+    if (simple(Z[i]) && Z[i]!=max0)
     {
       l++;
       x = true;
       if (l==1)
-        max1=i;
+        max1=Z[i];
       else
-        if (Z[i]>Z[max1])
+        if (Z[i]>max1)
         {
-          max1=i;
+          max1=Z[i];
         }
     }
   }
@@ -356,15 +356,15 @@ void search(int &max0, int &max1, int &max2, int Z[], int count)
   x = false;
   for (l = i = 0; i < count; i++)
   {
-    if (simple(Z[i]) && i!=max0 && i!=max1)
+    if (simple(Z[i]) && Z[i]!=max0 && Z[i]!=max1)
     {
       x = true;
       l++;
       if (l==1)
-        max2=i;
+        max2=Z[i];
       else
-        if (Z[i]>Z[max2])
-          max2=i;
+        if (Z[i]>max2)
+          max2=Z[i];
     }
   }
 
@@ -418,14 +418,14 @@ void zadacha7()
   else
   {
     if (max1 == NULL)
-      cout<< endl<< Z[max0];
+      cout<< endl<< max0;
     else
     {
       if (max2 == NULL)
-        cout<< endl<< Z[max0] << ' ' << Z[max1];
+        cout<< endl<< max0 << ' ' << max1;
       else
       {
-        cout<< endl<< Z[max0] << ' ' << Z[max1] <<' ' << Z[max2];
+        cout<< endl<< max0 << ' ' << max1 <<' ' << max2;
       }
 
     }
