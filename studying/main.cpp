@@ -296,8 +296,12 @@ void createnewmas (int*& Z, int X[], int n, int &counter)
 
 bool simple(int d)
 {
+  if (d==1)
+    return false;
+  if (d == 2 || d == 3)
+    return true;
   bool b = true;
-  for (int i = 0; b != false && i < sqrt(d); i++)
+  for (int i = 2; b != false && i <= (sqrt(d)+1); i++)
   {
     if (d % i==0)
     {
@@ -310,6 +314,65 @@ bool simple(int d)
 
 void search(int &max0, int &max1, int &max2, int Z[], int count)
 {
+  int i, l;
+  bool x=false;
+  for(max0 = 0, i = 1; i < count; i++)
+    if ( simple(Z[i]))
+    {
+      x=true;
+      if ( Z[i] > Z[max0])
+      {
+        max0 = i;
+      }
+    }
+  if ( !x )
+  {
+    max0=NULL;
+    return;
+  }
+  x=false;
+  for (l = i = 0; i < count; i++)
+  {
+    if (simple(Z[i]) && i!=max0)
+    {
+      l++;
+      x = true;
+      if (l==1)
+        max1=i;
+      else
+        if (Z[i]>Z[max1])
+        {
+          max1=i;
+        }
+    }
+  }
+
+  if ( !x )
+  {
+    max1=NULL;
+    return;
+  }
+
+  x = false;
+  for (l = i = 0; i < count; i++)
+  {
+    if (simple(Z[i]) && i!=max0 && i!=max1)
+    {
+      x = true;
+      l++;
+      if (l==1)
+        max2=i;
+      else
+        if (Z[i]>Z[max2])
+          max2=i;
+    }
+  }
+
+  if ( !x )
+  {
+    max2=NULL;
+    return;
+  }
 
 }
 
@@ -346,9 +409,27 @@ void zadacha7()
     cout << Z[i] << ' ';
   }
 
-  int max0, max1, max2;
+  int max0 = NULL, max1 = NULL, max2 = NULL;
   search(max0, max1, max2, Z, counter);
-   cout<< endl<< max0 << ' ' << max1<<' ' << max2;
+  if (max0 == NULL)
+  {
+     cout<<"Net prostyh chisel"<< endl;
+  }
+  else
+  {
+    if (max1 == NULL)
+      cout<< endl<< Z[max0];
+    else
+    {
+      if (max2 == NULL)
+        cout<< endl<< Z[max0] << ' ' << Z[max1];
+      else
+      {
+        cout<< endl<< Z[max0] << ' ' << Z[max1] <<' ' << Z[max2];
+      }
+
+    }
+  }
 
 }
 
