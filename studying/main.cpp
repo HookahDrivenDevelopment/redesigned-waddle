@@ -263,6 +263,8 @@ void zadacha6()
   delete [] C;
 }
 
+
+//возвращает true если сумма цифр числа нечетна, иначе false
 bool is_odd(int d)
 {
   int sum = 0;
@@ -279,6 +281,8 @@ bool is_odd(int d)
     return false;
 }
 
+
+//добавляет числа в массив если сумма цифр чила нечетна
 void createnewmas (int*& Z, int X[], int n, int &counter)
 {
   int *number;
@@ -294,6 +298,8 @@ void createnewmas (int*& Z, int X[], int n, int &counter)
   }
 }
 
+
+//проверяет простое ли число
 bool simple(int d)
 {
   if (d==1)
@@ -312,31 +318,35 @@ bool simple(int d)
   else return false;
 }
 
+
+//тут все сложно...
+//ищет три максимальных простых числа в массиве: сначала ищет самое меньшее простое число
+//потом второе наименьшее число, игнорируя первое, потом третье, игнорируя первые два
+//если непонятно то на странице 149 принцип алгоритма
+//max0, max1, max2 = -1, для того чтобы в дальнейшем посмотреть, были ли вообще простые
+//числа и в каком количестве они набрались, при малых объемах массива,
+//простые числа могут отсутствовать, если у нас не найдено первое второе или третье
+//простое число мы выходим из функции
 void search(int &max0, int &max1, int &max2, int Z[], int count)
 {
   int i, l;
-  bool x=false;
-  max0=-1;
   for(i = 0; i < count; i++)
   {
     if ( simple(Z[i]) &&  Z[i] > max0)
     {
-      x=true;
       max0 = Z[i];
     }
   }
-  if ( !x )
+  if ( max0==-1 )
   {
-    max0=NULL;
     return;
   }
-  x=false;
+
   for (l = i = 0; i < count; i++)
   {
     if (simple(Z[i]) && Z[i]!=max0)
     {
       l++;
-      x = true;
       if (l==1)
         max1=Z[i];
       else
@@ -347,18 +357,16 @@ void search(int &max0, int &max1, int &max2, int Z[], int count)
     }
   }
 
-  if ( !x )
+  if ( max1 == -1 )
   {
-    max1=NULL;
     return;
   }
 
-  x = false;
+
   for (l = i = 0; i < count; i++)
   {
     if (simple(Z[i]) && Z[i]!=max0 && Z[i]!=max1)
     {
-      x = true;
       l++;
       if (l==1)
         max2=Z[i];
@@ -368,9 +376,8 @@ void search(int &max0, int &max1, int &max2, int Z[], int count)
     }
   }
 
-  if ( !x )
+  if ( max2 == -1 )
   {
-    max2=NULL;
     return;
   }
 
@@ -409,19 +416,19 @@ void zadacha7()
     cout << Z[i] << ' ';
   }
 
-  int max0 = NULL, max1 = NULL, max2 = NULL;
+  int max0 = -1, max1 = -1, max2 = -1;
   search(max0, max1, max2, Z, counter);
-  if (max0 == NULL)
+  if (max0 == -1)
   {
-     cout<<"Net prostyh chisel"<< endl;
+     cout<<endl<<"Net prostyh chisel"<< endl;
   }
   else
   {
-    if (max1 == NULL)
+    if (max1 == -1)
       cout<< endl<< max0;
     else
     {
-      if (max2 == NULL)
+      if (max2 == -1)
         cout<< endl<< max0 << ' ' << max1;
       else
       {
