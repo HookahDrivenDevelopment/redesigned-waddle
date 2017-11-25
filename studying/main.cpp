@@ -263,6 +263,95 @@ void zadacha6()
   delete [] C;
 }
 
+bool is_odd(int d)
+{
+  int sum = 0;
+  while (d != 0)
+  {
+    sum += d % 10;
+    d /= 10;
+  }
+  if ( sum % 2 == 1)
+  {
+    return true;
+  }
+  else
+    return false;
+}
+
+void createnewmas (int*& Z, int X[], int n, int &counter)
+{
+  int *number;
+  for ( int i = 0; i < n; i++)
+  {
+    if ( is_odd( X[i]) )
+    {
+      counter ++;
+      number = (int*) realloc (Z, counter * sizeof(int));
+      Z = number;
+      Z[counter - 1] = X[i];
+    }
+  }
+}
+
+bool simple(int d)
+{
+  bool b = true;
+  for (int i = 0; b != false && i < sqrt(d); i++)
+  {
+    if (d % i==0)
+    {
+      b=false;
+    }
+  }
+  if (b) return true;
+  else return false;
+}
+
+void search(int &max0, int &max1, int &max2, int Z[], int count)
+{
+
+}
+
+
+void zadacha7()
+{
+  int *X, *Y, *Z= NULL;
+  int n, k;
+  cin >> n >> k;
+  X = new int[n];
+  Y = new int[k];
+  srand( time(0) );
+
+  cout << "X:"<< endl;
+  for ( int i = 0; i < n; ++i)
+  {
+    X[i] = 1 + rand() % 100;
+    cout << X[i] << ' ';
+  }
+
+  cout << endl << "Y:"<< endl;
+  for ( int i = 0; i < k; ++i)
+  {
+    Y[i] = 1 + rand() % 100;
+    cout << Y[i] << ' ';
+  }
+
+  int counter = 0;
+  createnewmas(Z,X,n,counter);
+  createnewmas(Z,Y,k,counter);
+  cout<< endl;
+  for ( int i = 0; i < counter; ++i)
+  {
+    cout << Z[i] << ' ';
+  }
+
+  int max0, max1, max2;
+  search(max0, max1, max2, Z, counter);
+   cout<< endl<< max0 << ' ' << max1<<' ' << max2;
+
+}
+
 int main()
 {
   /*zadacha1();
@@ -270,7 +359,9 @@ int main()
   zadacha3();
   zadacha4();
   zadacha5();*/
-  zadacha6();
+  //zadacha6();
+  zadacha7();
+
 
   return 0;
 }
