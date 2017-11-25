@@ -236,7 +236,31 @@ void zadacha6()
     cout << A[i] << ' ';
   }
 
+  bool flag = true;
 
+  for (int i = 0; flag == true, i < counter; i++)
+  {
+    if ( A[i] % 4 == 0)
+    {
+      flag = false;
+      for (int k = i; k < counter -1; k++)
+      {
+        A[i] = A[i+1];
+      }
+      counter--;
+    }
+  }
+
+  cout << "\nresult without kratnoe 4: \n";
+
+  for ( int i = 0; i < counter; ++i)
+  {
+    cout << A[i] << ' ';
+  }
+
+  delete [] A;
+  delete [] B;
+  delete [] C;
 }
 
 int main()
