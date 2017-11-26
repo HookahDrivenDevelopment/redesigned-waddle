@@ -437,8 +437,91 @@ void zadacha7()
 
     }
   }
+  delete []X;
+  delete []Y;
+  delete []Z;
 
 }
+
+
+void search_even_number(int &nmax1,int &nmax2, int x[], int n) //ищет два наибольших четных числа
+{
+  int i, kvo;
+  nmax1 = 0;
+  for ( i = 1; i < n; i++)
+  {
+    if ( (x[i]%2==0) && x[i] > x[nmax1] )
+    {
+      nmax1=i;
+    }
+  }
+  for ( kvo = i = 0; i < n; i++)
+  {
+    if ( (x[i]%2==0) && i !=nmax1 )
+    {
+      kvo++;
+      if ( kvo == 1)
+        nmax2=i;
+      else
+      {
+        if ( x[i] > x[nmax2] )
+        {
+          nmax2=i;
+        }
+      }
+    }
+  }
+
+}
+
+void sort(int *&x, int begin, int end) //bubblesort
+{
+  int i, j;
+  for(i = end - 1; i > begin;i--)
+  {
+    for (j =begin; j < i; j++)
+    {
+      if ( x[j] < x[j+1] )
+      {
+        int tmp = x[j];
+        x[j] = x[j+1];
+        x[j+1] = tmp;
+      }
+    }
+  }
+}
+
+void zadacha9()
+{
+  int *x;
+  int n = 20;
+  x = new int[n];
+  srand(time(0));
+  for ( int i = 0; i < n; i++)
+  {
+    x[i]= 1 + rand()%100;
+    cout<<x[i]<<" ";
+  }
+
+  int nmax1, nmax2;
+  search_even_number(nmax1,nmax2, x, n);
+  if (nmax1 > nmax2)
+  {
+    nmax1 = nmax1 + nmax2;
+    nmax2 = nmax1 - nmax2;
+    nmax1 = nmax1 - nmax2;
+  }
+
+  sort(x, nmax1, nmax2);
+
+  cout<<endl;
+  for ( int i = 0; i < n; i++)
+  {
+    cout<<x[i]<< ' ';
+  }
+  cout<< endl << nmax1<< " " << nmax2;
+}
+
 
 int main()
 {
@@ -448,7 +531,8 @@ int main()
   zadacha4();
   zadacha5();*/
   //zadacha6();
-  zadacha7();
+  //zadacha7();
+  zadacha9();
 
 
   return 0;
