@@ -521,7 +521,88 @@ void zadacha9()
   }
   cout<< endl << nmax1<< " " << nmax2;
 }
+//алгоритм стр157
+void searchseq(int x[], int n, int& begin, int &end)
+{
+  int i, k, kgr, kon_max, max;
+  for (kgr = i = 0, k = 1; i < n-1; i++)
+    if ( x[i] % 2 == 1 && x[i+1] % 2 == 1 && x[i] <= x[i+1])
+    {
+      k++;
+    }
+    else
+      if (k>1)
+      {
+        kgr++;
+        if (kgr==1)
+        {
+          max = k;
+          kon_max = i;
+        }
+        else
 
+          if (k > max)
+          {
+            max = k;
+            kon_max = i;
+          }
+
+        k = 1;
+
+      }
+      if (k > 1)
+      {
+        kgr++;
+        if ( kgr == 1)
+        {
+          max = k;
+          kon_max = n-1;
+        }
+        else
+          if (k > max)
+          {
+            max = k;
+            kon_max = n - 1;
+          }
+      }
+
+    if (kgr > 0)
+    {
+      begin = kon_max-max+1;
+      end = kon_max;
+    }
+    else
+    {
+      begin=end=0;
+    }
+}
+
+void zadacha8()
+{
+  int *x, begin, end, n;
+  n = 20;
+  x=new int[n] {0, 1, 3, 5, 2, 4, 20, 5, 9, 11, 2, 4,5, 7, 13, 15, 17, 6, 9, 8};
+  for ( int i = 0; i < n; i++ )
+  {
+    cout << x[i] <<  ' ';
+  }
+  cout << endl;
+
+  searchseq(x, 20, begin, end);
+
+  for (int i = begin; i <=  end; i++)
+    cout << x[i] << ' ';
+
+  for (int i = begin; i < n - (end - begin); i++)
+  {
+    x[i] = x[i+(end - begin +1)];
+  }
+
+  cout << endl;
+  for (int i = 0; i <n - (end - begin) -1; i++)
+    cout<<x[i]<<' ';
+  delete []x;
+}
 
 int main()
 {
@@ -532,7 +613,8 @@ int main()
   zadacha5();*/
   //zadacha6();
   //zadacha7();
-  zadacha9();
+  zadacha8();
+  //zadacha9();
 
 
   return 0;
