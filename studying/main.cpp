@@ -280,13 +280,15 @@ bool is_odd(int d)
     return true;
   }
   else
+  {
   // REVIEW: тут нехватает скобок
     return false;
+  }
 }
 
 
 //добавляет числа в массив если сумма цифр чила нечетна
-void createnewmas (int*& Z, int X[], int n, int &counter) // REVIEW: лучше писать int& counter, а не int &counter
+void createnewmas (int*& Z, int X[], int n, int& counter) // REVIEW: лучше писать int& counter, а не int &counter
 {
   int *number;
   for ( int i = 0; i < n; i++)
@@ -306,9 +308,13 @@ void createnewmas (int*& Z, int X[], int n, int &counter) // REVIEW: лучше 
 bool simple(int d)
 {
   if (d==1)
+  {
     return false;
+  }
   if (d == 2 || d == 3)
+  {
     return true;
+  }
   bool b = true;
   for (int i = 2; b != false && i <= (sqrt(d)+1); i++)
   {
@@ -319,8 +325,7 @@ bool simple(int d)
   }
 
   // REVIEW: return b; имеет тот же эффект
-  if (b) return true;
-  else return false;
+  return b;
 }
 
 
@@ -332,7 +337,7 @@ bool simple(int d)
 //числа и в каком количестве они набрались, при малых объемах массива,
 //простые числа могут отсутствовать, если у нас не найдено первое второе или третье
 //простое число мы выходим из функции
-void search(int &max0, int &max1, int &max2, int Z[], int count)
+void search(int& max0, int& max1, int& max2, int Z[], int count)
 {
   int i, l;
   for(i = 0; i < count; i++)
@@ -354,12 +359,16 @@ void search(int &max0, int &max1, int &max2, int Z[], int count)
       l++;
       // REVIEW: тут не хватает скобок
       if (l==1)
+      {
         max1=Z[i];
+      }
       else
+      {
         if (Z[i]>max1)
         {
           max1=Z[i];
         }
+      }
     }
   }
 
@@ -376,10 +385,16 @@ void search(int &max0, int &max1, int &max2, int Z[], int count)
       l++;
       // REVIEW: не помешали бы скобки
       if (l==1)
+      {
         max2=Z[i];
+      }
       else
+      {
         if (Z[i]>max2)
+        {
           max2=Z[i];
+        }
+      }
     }
   }
 
@@ -435,11 +450,15 @@ void zadacha7()
   else
   {
     if (max1 == -1)
+    {
       cout<< endl<< max0; // REVIEW: скобки
+    }
     else
     {
       if (max2 == -1)
+      {
         cout<< endl<< max0 << ' ' << max1; // REVIEW: скобки
+      }
       else
       {
         cout<< endl<< max0 << ' ' << max1 <<' ' << max2;
@@ -536,11 +555,13 @@ void searchseq(int x[], int n, int& begin, int &end)
 {
   int i, k, kgr, kon_max, max;
   for (kgr = i = 0, k = 1; i < n-1; i++) // REVIEW: скобки
+  {
     if ( x[i] % 2 == 1 && x[i+1] % 2 == 1 && x[i] <= x[i+1])
     {
       k++;
     }
-    else // REVIEW: скобки, иначе непонятна, куда относиться второй if - скорее всего тут может быть ошибка
+    else
+    {// REVIEW: скобки, иначе непонятна, куда относиться второй if - скорее всего тут может быть ошибка
       if (k>1)
       {
         kgr++;
@@ -550,48 +571,53 @@ void searchseq(int x[], int n, int& begin, int &end)
           kon_max = i;
         }
         else // REVIEW: скобки
-
+        {
           if (k > max)
           {
             max = k;
             kon_max = i;
           }
+        }
 
         k = 1;
 
       }
-      if (k > 1)
+    }
+  }
+  if (k > 1)
+  {
+    kgr++;
+    if ( kgr == 1)
+    {
+      max = k;
+      kon_max = n-1;
+    }
+    else // REVIEW: скобки
+    {
+      if (k > max)
       {
-        kgr++;
-        if ( kgr == 1)
-        {
-          max = k;
-          kon_max = n-1;
-        }
-        else // REVIEW: скобки
-          if (k > max)
-          {
-            max = k;
-            kon_max = n - 1;
-          }
+        max = k;
+        kon_max = n - 1;
       }
+    }
+  }
 
-    if (kgr > 0)
-    {
-      begin = kon_max-max+1;
-      end = kon_max;
-    }
-    else
-    {
-      begin=end=0;
-    }
+  if (kgr > 0)
+  {
+    begin = kon_max-max+1;
+    end = kon_max;
+  }
+  else
+  {
+    begin=end=0;
+  }
 }
 
 void zadacha8()
 {
   int *x, begin, end, n;
   n = 20;
-  x=new int[n] {0, 1, 3, 5, 2, 4, 20, 5, 9, 11, 2, 4,5, 7, 13, 15, 17, 6, 9, 8};
+  x=new int[n] {0, 1, 3, 5, 2, 4, 20, 5, 9, 11, 2, 4, 6, 9, 8,5, 7, 13, 15, 17};
   for ( int i = 0; i < n; i++ )
   {
     cout << x[i] <<  ' ';
@@ -601,7 +627,9 @@ void zadacha8()
   searchseq(x, 20, begin, end);
 
   for (int i = begin; i <=  end; i++) // REVIEW: скобки
+  {
     cout << x[i] << ' ';
+  }
 
   for (int i = begin; i < n - (end - begin); i++)
   {
@@ -610,7 +638,9 @@ void zadacha8()
 
   cout << endl;
   for (int i = 0; i <n - (end - begin) -1; i++) // REVIEW: скобки
+  {
     cout<<x[i]<<' ';
+  }
   delete []x;
 }
 
